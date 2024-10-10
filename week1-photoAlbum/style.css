@@ -21,6 +21,7 @@ header {
   background-image: linear-gradient(to top, rgba(255, 0, 0, 0) 20%, #000);
 
   z-index: 5;
+
   div {
     display: flex;
     align-items: center;
@@ -107,6 +108,14 @@ h1 {
 }
 
 /* 무한 배너 */
+@keyframes infinite-ani {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(calc(-100% * 5));
+  }
+}
 .Heartsping {
   display: flex;
   align-items: center;
@@ -116,11 +125,15 @@ h1 {
 
   border: 3px solid #fa93d3;
 
+  overflow: hidden;
+
   img {
     width: 20%;
     padding: 3%;
     box-sizing: border-box;
     object-fit: cover;
+
+    animation: infinite-ani 10s linear infinite;
   }
 }
 
