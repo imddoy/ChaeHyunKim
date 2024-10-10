@@ -93,3 +93,73 @@ main {
     }
   }
 }
+
+/* section 공통 스타일 */
+section {
+  padding: 5rem 10rem;
+}
+
+h1 {
+  font-family: "HakgyoansimDunggeunmisoTTF-B";
+  color: #fa93d3;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+/* 무한 배너 */
+.Heartsping {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  margin: 2rem 0;
+
+  border: 3px solid #fa93d3;
+
+  img {
+    width: 20%;
+    padding: 3%;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+}
+
+/* 스크롤 뷰 */
+.Teenieping {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  width: 100%;
+  margin: 2rem 0;
+  color: #fff;
+  font-size: 3rem;
+
+  overflow-x: scroll;
+  z-index: 3;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  i {
+    position: sticky;
+    width: 2rem;
+
+    &:first-of-type {
+      left: 0;
+    }
+    &:last-of-type {
+      right: 0;
+    }
+  }
+
+  img {
+    width: 20rem;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+
+    border-radius: 8px;
+  }
+}
