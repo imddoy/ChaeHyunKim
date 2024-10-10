@@ -155,19 +155,22 @@ h1 {
   font-size: 3rem;
 
   overflow-x: scroll;
+  scroll-behavior: smooth;
   z-index: 3;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  i {
+  a {
     position: sticky;
     width: 2rem;
+    color: #fff;
 
     &:first-of-type {
       left: 0;
     }
+
     &:last-of-type {
       right: 0;
     }
