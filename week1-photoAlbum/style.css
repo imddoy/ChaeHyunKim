@@ -132,8 +132,13 @@ h1 {
     padding: 3%;
     box-sizing: border-box;
     object-fit: cover;
+    border-right: 2px solid #fa93d3;
 
-    animation: infinite-ani 10s linear infinite;
+    animation: infinite-ani 20s linear infinite;
+
+    &:hover {
+      padding: 0;
+    }
   }
 }
 
