@@ -39,9 +39,8 @@ nav {
   font-size: 1.6rem;
   color: #fff;
 
-  a {
-    color: #fff;
-    text-decoration-line: none;
+  li {
+    list-style: none;
   }
 }
 
