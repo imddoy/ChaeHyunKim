@@ -31,6 +31,12 @@ header {
     width: 5rem;
     margin-right: 2rem;
   }
+
+  i {
+    margin: 0.8rem;
+    font-size: 1.6rem;
+    color: #fff;
+  }
 }
 
 nav,
