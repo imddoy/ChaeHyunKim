@@ -18,22 +18,24 @@
       <div>
         <img src="assets/logo.webp" alt="캐치 티니핑 로고 이미지" />
         <nav>
-          <li>홈</li>
-          <li>캐치! 티니핑</li>
-          <li>반짝반짝 캐치! 티니핑</li>
-          <li>알쏭달쏭 캐치! 티니핑</li>
-          <li>새콤달콤 캐치! 티니핑</li>
-          <li>슈팅스타 캐치! 티니핑</li>
+          <ul>
+            <li>홈</li>
+            <li>캐치! 티니핑</li>
+            <li>반짝반짝 캐치! 티니핑</li>
+            <li>알쏭달쏭 캐치! 티니핑</li>
+            <li>새콤달콤 캐치! 티니핑</li>
+            <li>슈팅스타 캐치! 티니핑</li>
+          </ul>
         </nav>
       </div>
-      <nav>
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-regular fa-bell"></i>
-        <i class="fa-regular fa-circle-user"></i>
-      </nav>
+      <div>
+        <i class="fa-solid fa-magnifying-glass" aria-label="검색"></i>
+        <i class="fa-regular fa-bell" aria-label="알림"></i>
+        <i class="fa-regular fa-circle-user" aria-label="사용자"></i>
+      </div>
     </header>
     <main>
-      <img src="assets/main.jpg" alt="하츄핑 메인 이미지" />
+      <img src="assets/main.jpg" alt="하츄핑 메인 이미지" role="presentation" />
       <div>
         <p>캐치! 티니핑🩷</p>
         <a
@@ -45,8 +47,8 @@
     </main>
     <!-- 무한 배너 -->
     <section>
-      <h1>하츄핑</h1>
-      <article class="Heartsping">
+      <h2>하츄핑</h2>
+      <div class="Heartsping">
         <div class="imageWrapper">
           <img src="assets/normal.png" alt="하츄핑" loading="lazy" />
         </div>
@@ -78,33 +80,35 @@
         <div class="imageWrapper">
           <img src="assets/star.png" alt="스타 하츄핑" loading="lazy" />
         </div>
-      </article>
+      </div>
     </section>
     <!-- 스크롤 뷰 -->
     <section>
-      <h1>또이 pick! 티니핑</h1>
-      <article class="Teenieping">
+      <h2>티니핑</h2>
+      <div class="TeeniepingWrapper">
         <a href="#firstTeenie"><i class="fa-solid fa-chevron-left"></i></a>
-        <img
-          src="assets/Okeydokeyping.webp"
-          alt="꾸래핑"
-          id="firstTeenie"
-          loading="lazy"
-        />
-        <img src="assets/museyping.png" alt="차나핑" loading="lazy" />
-        <img src="assets/Lalaping.webp" alt="라라핑" loading="lazy" />
-        <img src="assets/Kikiping.jpg" alt="키키핑" loading="lazy" />
-        <img src="assets/Shimmerping.jpg" alt="빛나핑" loading="lazy" />
-        <img src="assets/Fluffyping.webp" alt="포실핑" loading="lazy" />
-        <img src="assets/nonoping.png" alt="시러핑" loading="lazy" />
-        <img
-          src="assets/Iceflakeping.webp"
-          alt="눈꽃핑"
-          id="lastTeenie"
-          loading="lazy"
-        />
+        <div class="Teenieping">
+          <img
+            src="assets/Okeydokeyping.webp"
+            alt="꾸래핑"
+            id="firstTeenie"
+            loading="lazy"
+          />
+          <img src="assets/museyping.png" alt="차나핑" loading="lazy" />
+          <img src="assets/Lalaping.webp" alt="라라핑" loading="lazy" />
+          <img src="assets/Kikiping.jpg" alt="키키핑" loading="lazy" />
+          <img src="assets/Shimmerping.jpg" alt="빛나핑" loading="lazy" />
+          <img src="assets/Fluffyping.webp" alt="포실핑" loading="lazy" />
+          <img src="assets/nonoping.png" alt="시러핑" loading="lazy" />
+          <img
+            src="assets/Iceflakeping.webp"
+            alt="눈꽃핑"
+            id="lastTeenie"
+            loading="lazy"
+          />
+        </div>
         <a href="#lastTeenie"><i class="fa-solid fa-chevron-right"></i></a>
-      </article>
+      </div>
     </section>
   </body>
 </html>
