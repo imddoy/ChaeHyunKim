@@ -1,0 +1,197 @@
+@font-face {
+  font-family: "HakgyoansimDunggeunmisoTTF-B";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* 헤더 스타일 */
+header {
+  position: fixed;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 2rem;
+
+  box-sizing: border-box;
+  background-image: linear-gradient(to top, rgba(255, 0, 0, 0) 20%, #000);
+
+  z-index: 5;
+
+  & div {
+    display: flex;
+    align-items: center;
+  }
+
+  & img {
+    width: 5rem;
+    margin-right: 2rem;
+  }
+
+  & i {
+    margin: 0.8rem;
+    font-size: 1.6rem;
+    color: #fff;
+  }
+}
+
+nav,
+nav ul {
+  display: flex;
+  gap: 1.8rem;
+
+  font-size: 1.6rem;
+  color: #fff;
+
+  & li {
+    list-style: none;
+  }
+}
+
+main {
+  position: relative;
+  & img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  & div {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+  & p {
+    padding: 2rem 4rem;
+
+    font-size: 4rem;
+    text-align: center;
+    font-family: "HakgyoansimDunggeunmisoTTF-B";
+    color: #fa93d3;
+    font-weight: 800;
+    background-color: #fff;
+    border-radius: 12px;
+
+    z-index: 2;
+  }
+
+  & a {
+    padding: 2rem 4rem;
+
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1.6rem;
+    text-decoration-line: none;
+    border-radius: 12px;
+
+    z-index: 2;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+/* section 공통 스타일 */
+section {
+  padding: 5rem 10rem;
+}
+
+h2 {
+  font-family: "HakgyoansimDunggeunmisoTTF-B";
+  color: #fa93d3;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+/* 무한 배너 */
+@keyframes infinite-ani {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(calc(-100% * 5));
+  }
+}
+
+.Heartsping {
+  display: flex;
+
+  width: 100%;
+  margin: 2rem 0;
+
+  border: 3px solid #fa93d3;
+
+  overflow: hidden;
+}
+
+.imageWrapper {
+  width: 20%;
+  flex-shrink: 0;
+  height: auto;
+  border-right: 2px solid #fa93d3;
+  animation: infinite-ani 20s linear infinite;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+/* 스크롤 뷰 */
+.TeeniepingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  & a {
+    font-size: 2rem;
+    color: #fff;
+  }
+}
+
+.Teenieping {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  width: 100%;
+  margin: 2rem 0;
+  color: #fff;
+  font-size: 3rem;
+
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  z-index: 3;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & img {
+    width: 20rem;
+    aspect-ratio: 3/4;
+    margin: 1rem;
+    object-fit: cover;
+
+    border-radius: 8px;
+    box-shadow: 0 0 1.2rem 0.4rem rgba(225, 225, 225, 0.25);
+  }
+}
