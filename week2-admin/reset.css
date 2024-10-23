@@ -89,7 +89,6 @@ video {
 html {
   font-size: 62.5%; /*rem 세팅*/
   background-color: black;
-  color: white;
 }
 /* HTML5 display-role reset for older browsers */
 article,

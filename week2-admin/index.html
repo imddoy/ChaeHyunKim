@@ -17,7 +17,58 @@
       <div>관리자 페이지</div>
       <div>🌊AND SOPT WEB 김채현🌊</div>
     </header>
-
+    <main>
+      <section class="filter-container">
+        <div class="filter-wrapper">
+          <div class="input-wrapper name">
+            <p>이름</p>
+            <input placeholder="이름을 입력하세요" />
+          </div>
+          <div class="input-wrapper en-name">
+            <p>영문이름</p>
+            <input placeholder="영문이름을 입력하세요" />
+          </div>
+          <div class="input-wrapper github">
+            <p>GitHub</p>
+            <input placeholder="GitHub ID를 입력하세요" />
+          </div>
+          <div class="input-wrapper gender">
+            <p>성별</p>
+            <select required>
+              <option value="" selected disabled hidden>성별 선택</option>
+              <option>남자</option>
+              <option>여자</option>
+            </select>
+          </div>
+          <div class="input-wrapper role">
+            <p>역할</p>
+            <select required>
+              <option value="" selected disabled hidden>OB/YB 선택</option>
+              <option>OB</option>
+              <option>YB</option>
+            </select>
+          </div>
+          <div class="input-wrapper first-team">
+            <p>1주차 금잔디조</p>
+            <input
+              placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+              type="number"
+            />
+          </div>
+          <div class="input-wrapper second-team">
+            <p>2주차 금잔디조</p>
+            <input
+              placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+              type="number"
+            />
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button>초기화</button>
+          <button>검색</button>
+        </div>
+      </section>
+    </main>
     <script type="module" src="index.js"></script>
   </body>
 </html>

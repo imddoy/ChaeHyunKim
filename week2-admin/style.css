@@ -1,6 +1,6 @@
 /* 헤더 */
 header {
-  position: fixed;
+  position: sticky;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -10,6 +10,7 @@ header {
 
   background-color: black;
   font-size: 2rem;
+  color: #fff;
 
   & div:first-child {
     text-align: left;
@@ -19,5 +20,142 @@ header {
   }
   & div:last-child {
     text-align: right;
+  }
+}
+
+/* 레이아웃 */
+main {
+  width: 80vw;
+  margin: 2rem auto;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  width: inherit;
+  height: max-content;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #829fd4;
+  border-radius: 8px;
+}
+
+.filter-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas:
+    "name name name name name name"
+    "en-name en-name en-name en-name en-name en-name"
+    "github github gender gender role role"
+    "first-team first-team first-team second-team second-team second-team";
+  gap: 1.2rem;
+
+  width: 100%;
+}
+
+/* 각 input의 영역 */
+.name {
+  grid-area: name;
+}
+.en-name {
+  grid-area: en-name;
+}
+.github {
+  grid-area: github;
+}
+.gender {
+  grid-area: gender;
+}
+.role {
+  grid-area: role;
+}
+.first-team {
+  grid-area: first-team;
+}
+.second-team {
+  grid-area: second-team;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  height: 5rem;
+
+  & p {
+    align-content: center;
+    flex-shrink: 0; /* 공간이 줄어들어도 너비가 작아지지 않도록 고정 */
+    width: 12rem;
+    height: inherit;
+
+    font-size: 1.6rem;
+    font-weight: 800;
+    background-color: #a7b6d1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  & input,
+  select {
+    flex-grow: 1; /* 크기를 꽉 채울 수 있도록 설정 */
+    min-width: 0; /* grid 안에서 셀 크기에 맞춰 최소한의 너비로 줄어들 수 있도록 설정 */
+    height: inherit;
+    padding: 0 0.8rem;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    outline: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* select placeholder 설정 */
+select {
+  color: gray; /* 기본적으로 회색 글씨 */
+
+  & option {
+    color: black; /* option은 검정 글씨 */
+  }
+
+  &:valid {
+    /* 유효한 값을 갖고 있다면 */
+    color: black;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  button {
+    width: 40%;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &:first-child {
+      background-color: #3b4e71;
+    }
+    &:last-child {
+      background-color: #041a43;
+    }
   }
 }
