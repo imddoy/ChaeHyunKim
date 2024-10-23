@@ -15,9 +15,11 @@ header {
   & div:first-child {
     text-align: left;
   }
+
   & div:nth-child(2) {
     text-align: center;
   }
+
   & div:last-child {
     text-align: right;
   }
@@ -27,6 +29,9 @@ header {
 main {
   width: 80vw;
   margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
 
 .filter-container {
@@ -157,5 +162,40 @@ select {
     &:last-child {
       background-color: #041a43;
     }
+  }
+}
+
+/* 데이터 테이블 */
+.data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 2rem;
+}
+
+.data-button {
+  justify-content: end;
+  width: 24rem;
+}
+
+table {
+  width: 100%;
+
+  background-color: white;
+
+  & * {
+    align-content: center;
+    height: 3rem;
+
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+
+    border: 1px solid #041a43;
+  }
+
+  & th {
+    color: white;
+    background-color: #3b4e71;
   }
 }
