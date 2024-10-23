@@ -54,7 +54,7 @@ main {
     "name name name name name name"
     "en-name en-name en-name en-name en-name en-name"
     "github github gender gender role role"
-    "first-team first-team first-team second-team second-team second-team";
+    "first-group first-group first-group second-group second-group second-group";
   gap: 1.2rem;
 
   width: 100%;
@@ -76,11 +76,11 @@ main {
 .role {
   grid-area: role;
 }
-.first-team {
-  grid-area: first-team;
+.first-group {
+  grid-area: first-group;
 }
-.second-team {
-  grid-area: second-team;
+.second-group {
+  grid-area: second-group;
 }
 
 .input-wrapper {

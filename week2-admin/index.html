@@ -48,14 +48,14 @@
               <option>YB</option>
             </select>
           </div>
-          <div class="input-wrapper first-team">
+          <div class="input-wrapper first-group">
             <p>1주차 금잔디조</p>
             <input
               placeholder="1주차 금잔디조를 입력하세요 (1~9)"
               type="number"
             />
           </div>
-          <div class="input-wrapper second-team">
+          <div class="input-wrapper second-group">
             <p>2주차 금잔디조</p>
             <input
               placeholder="2주차 금잔디조를 입력하세요 (1~9)"
@@ -74,16 +74,32 @@
           <button>추가</button>
         </div>
         <table>
-          <tr>
-            <th><input type="checkbox" /></th>
-            <th>이름</th>
-            <th>영문이름</th>
-            <th>GitHub</th>
-            <th>성별</th>
-            <th>역할</th>
-            <th>1주차 금잔디</th>
-            <th>2주차 금잔디</th>
-          </tr>
+          <thead>
+            <tr>
+              <th><input type="checkbox" /></th>
+              <th>이름</th>
+              <th>영문이름</th>
+              <th>GitHub</th>
+              <th>성별</th>
+              <th>역할</th>
+              <th>1주차 금잔디</th>
+              <th>2주차 금잔디</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template id="row-template">
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td class="name"></td>
+                <td class="english-name"></td>
+                <td class="github"></td>
+                <td class="gender"></td>
+                <td class="role"></td>
+                <td class="first-week-group"></td>
+                <td class="second-week-group"></td>
+              </tr>
+            </template>
+          </tbody>
         </table>
       </section>
     </main>
