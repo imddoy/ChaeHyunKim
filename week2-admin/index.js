@@ -34,6 +34,8 @@ const renderTable = () => {
     clone.querySelector(".name").textContent = member.name;
     clone.querySelector(".english-name").textContent = member.englishName;
     clone.querySelector(".github").textContent = member.github;
+    clone.querySelector(".github").href = `https://github.com/${member.github}`;
+    clone.querySelector(".github").target = "_blank";
     clone.querySelector(".gender").textContent =
       member.gender === "male" ? "남자" : "여자";
     clone.querySelector(".role").textContent = member.role;

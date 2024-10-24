@@ -194,6 +194,12 @@ table {
     border: 1px solid #041a43;
   }
 
+  & a {
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+
   & th {
     color: white;
     background-color: #3b4e71;
