@@ -73,7 +73,7 @@
       <section class="data-container">
         <div class="button-wrapper data-button">
           <button id="delete-button">선택 삭제</button>
-          <button>추가</button>
+          <button id="add-button">추가</button>
         </div>
         <table>
           <thead>
@@ -89,7 +89,7 @@
             </tr>
           </thead>
           <tbody></tbody>
-          <!-- tr 템플릿 생성 -->
+          <!-- tr 템플릿 -->
           <template id="row-template">
             <tr>
               <td><input class="checkbox" type="checkbox" /></td>
@@ -105,6 +105,64 @@
         </table>
       </section>
     </main>
+    <!-- 모달 -->
+    <dialog>
+      <div class="dialog-container">
+        <form class="dialog-header" method="dialog">
+          <h2>새 멤버 추가</h2>
+          <button>X</button>
+        </form>
+        <div class="filter-wrapper">
+          <div class="input-wrapper name">
+            <p>이름</p>
+            <input id="add-name" placeholder="이름을 입력하세요" />
+          </div>
+          <div class="input-wrapper en-name">
+            <p>영문이름</p>
+            <input id="add-en-name" placeholder="영문이름을 입력하세요" />
+          </div>
+          <div class="input-wrapper github">
+            <p>GitHub</p>
+            <input id="add-github" placeholder="GitHub ID를 입력하세요" />
+          </div>
+          <div class="input-wrapper gender">
+            <p>성별</p>
+            <select id="add-gender" required>
+              <option value="" selected disabled hidden>성별 선택</option>
+              <option value="male">남자</option>
+              <option value="female">여자</option>
+            </select>
+          </div>
+          <div class="input-wrapper role">
+            <p>역할</p>
+            <select id="add-role" required>
+              <option value="" selected disabled hidden>OB/YB 선택</option>
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
+            </select>
+          </div>
+          <div class="input-wrapper first-group">
+            <p>1주차 금잔디조</p>
+            <input
+              id="add-first-group"
+              placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+              type="number"
+            />
+          </div>
+          <div class="input-wrapper second-group">
+            <p>2주차 금잔디조</p>
+            <input
+              id="add-second-group"
+              placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+              type="number"
+            />
+          </div>
+        </div>
+        <form method="dialog">
+          <button class="confirm-button">추가</button>
+        </form>
+      </div>
+    </dialog>
     <script type="module" src="index.js"></script>
   </body>
 </html>

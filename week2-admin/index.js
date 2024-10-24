@@ -1,6 +1,6 @@
-// 초기 데이터 가져오기
 import members from "./data/members.js";
 
+/* 데이터 생성, 조회,업데이트 */
 // 초기 데이터 세팅
 if (!localStorage.getItem("members")) {
   localStorage.setItem("members", JSON.stringify(members));
@@ -72,7 +72,7 @@ const renderTable = (filterMembers) => {
 // 페이지가 로드될 때 테이블 렌더링
 renderTable();
 
-// 데이터 필터링
+/* 데이터 필터링 */
 const filterBtn = document.querySelector("#filter-button");
 filterBtn.onclick = () => {
   const filterMembers = getMembers().filter(filterData);
@@ -117,6 +117,7 @@ clearBtn.onclick = () => {
   document.querySelector("#filter-second-group").value = "";
 };
 
+/* 체크박스 구현 */
 // 전체 체크박스 on/off
 const allBtn = document.querySelector(".all-button");
 const checkboxes = document.querySelectorAll(".checkbox");
@@ -138,7 +139,7 @@ const checkSelectAll = (checkbox) => {
   }
 };
 
-// 데이터 삭제
+/* 데이터 삭제 */
 const deleteBtn = document.querySelector("#delete-button");
 deleteBtn.onclick = () => {
   const deleteMembers = getMembers().filter(deleteData);
@@ -155,3 +156,13 @@ const deleteData = (data) => {
 
   return uncheckedID.includes(data.id);
 };
+
+/* 모달 */
+const modal = document.querySelector("dialog");
+document.querySelector("#add-button").onclick = () => {
+  modal.showModal();
+};
+// 백드롭 클릭 시 모달 닫힘
+modal.addEventListener("click", (e) => {
+  if (e.target.nodeName === "DIALOG") modal.close();
+});
