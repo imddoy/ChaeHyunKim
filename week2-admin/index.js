@@ -12,8 +12,8 @@ const getMembers = () => {
 };
 
 // 테이블 렌더링하는 함수
-const renderTable = () => {
-  const nowMembers = getMembers();
+const renderTable = (filterMembers) => {
+  const nowMembers = filterMembers || getMembers();
 
   // 테이블 초기화
   const tableBody = document.querySelector("tbody");
@@ -24,6 +24,12 @@ const renderTable = () => {
 
   // 템플릿 가져오기
   const template = document.querySelector("#row-template");
+
+  // 데이터가 없으면 아무것도 추가하지 않음
+  if (nowMembers.length === 0) {
+    tableBody.textContent = "데이터가 없습니다";
+    return;
+  }
 
   // 데이터 순회하며 행 생성 및 추가
   nowMembers.forEach((member) => {
@@ -54,3 +60,47 @@ const renderTable = () => {
 
 // 페이지가 로드될 때 테이블 렌더링
 renderTable();
+
+// 데이터 필터링
+const filterBtn = document.querySelector("#filter-button");
+filterBtn.onclick = () => {
+  const filterMembers = getMembers().filter(filterData);
+  console.log(filterMembers);
+  renderTable(filterMembers);
+};
+
+const filterData = (data) => {
+  const filterName = document.querySelector("#filter-name").value;
+  const filterEnName = document.querySelector("#filter-en-name").value;
+  const filterGithub = document.querySelector("#filter-github").value;
+  const filterGender = document.querySelector("#filter-gender").value;
+  const filterRole = document.querySelector("#filter-role").value;
+  const filterFirstGroup = document.querySelector("#filter-first-group").value;
+  const filterSecondGroup = document.querySelector(
+    "#filter-second-group"
+  ).value;
+
+  return (
+    (filterName === "" || data.name.includes(filterName)) &&
+    (filterEnName === "" || data.englishName.includes(filterEnName)) &&
+    (filterGithub === "" || data.github.includes(filterGithub)) &&
+    (filterGender === "" || data.gender === filterGender) &&
+    (filterRole === "" || data.role === filterRole) &&
+    (filterFirstGroup === "" ||
+      data.firstWeekGroup.toString() === filterFirstGroup) &&
+    (filterSecondGroup === "" ||
+      data.secondWeekGroup.toString() === filterSecondGroup)
+  );
+};
+
+// 필터링 초기화
+const ClearBtn = document.querySelector("#clear-button");
+ClearBtn.onclick = () => {
+  document.querySelector("#filter-name").value = "";
+  document.querySelector("#filter-en-name").value = "";
+  document.querySelector("#filter-github").value = "";
+  document.querySelector("#filter-gender").value = "";
+  document.querySelector("#filter-role").value = "";
+  document.querySelector("#filter-first-group").value = "";
+  document.querySelector("#filter-second-group").value = "";
+};

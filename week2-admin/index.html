@@ -22,35 +22,36 @@
         <div class="filter-wrapper">
           <div class="input-wrapper name">
             <p>이름</p>
-            <input placeholder="이름을 입력하세요" />
+            <input id="filter-name" placeholder="이름을 입력하세요" />
           </div>
           <div class="input-wrapper en-name">
             <p>영문이름</p>
-            <input placeholder="영문이름을 입력하세요" />
+            <input id="filter-en-name" placeholder="영문이름을 입력하세요" />
           </div>
           <div class="input-wrapper github">
             <p>GitHub</p>
-            <input placeholder="GitHub ID를 입력하세요" />
+            <input id="filter-github" placeholder="GitHub ID를 입력하세요" />
           </div>
           <div class="input-wrapper gender">
             <p>성별</p>
-            <select required>
+            <select id="filter-gender" required>
               <option value="" selected disabled hidden>성별 선택</option>
-              <option>남자</option>
-              <option>여자</option>
+              <option value="male">남자</option>
+              <option value="female">여자</option>
             </select>
           </div>
           <div class="input-wrapper role">
             <p>역할</p>
-            <select required>
+            <select id="filter-role" required>
               <option value="" selected disabled hidden>OB/YB 선택</option>
-              <option>OB</option>
-              <option>YB</option>
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
             </select>
           </div>
           <div class="input-wrapper first-group">
             <p>1주차 금잔디조</p>
             <input
+              id="filter-first-group"
               placeholder="1주차 금잔디조를 입력하세요 (1~9)"
               type="number"
             />
@@ -58,13 +59,14 @@
           <div class="input-wrapper second-group">
             <p>2주차 금잔디조</p>
             <input
+              id="filter-second-group"
               placeholder="2주차 금잔디조를 입력하세요 (1~9)"
               type="number"
             />
           </div>
         </div>
         <div class="button-wrapper">
-          <button>초기화</button>
+          <button id="clear-button">초기화</button>
           <button id="filter-button">검색</button>
         </div>
       </section>
