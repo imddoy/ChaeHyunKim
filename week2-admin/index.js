@@ -11,6 +11,12 @@ const getMembers = () => {
   return JSON.parse(localStorage.getItem("members"));
 };
 
+// 멤버 데이터를 로컬 스토리지에 다시 저장하는 함수
+const setMembers = (newMembers) => {
+  localStorage.setItem("members", JSON.stringify(newMembers));
+  renderTable();
+};
+
 // 테이블 렌더링하는 함수
 const renderTable = (filterMembers) => {
   const nowMembers = filterMembers || getMembers();
@@ -35,6 +41,11 @@ const renderTable = (filterMembers) => {
   nowMembers.forEach((member) => {
     // template에서 복제된 내용 가져오기
     const clone = template.content.cloneNode(true);
+
+    clone.querySelector("tr").id = member.id;
+    clone.querySelector(".checkbox").onclick = (event) => {
+      onclick = checkSelectAll(event.target);
+    };
 
     // 복제된 행의 각 셀에 데이터 채우기
     clone.querySelector(".name").textContent = member.name;
@@ -69,6 +80,7 @@ filterBtn.onclick = () => {
   renderTable(filterMembers);
 };
 
+// 데이터 필터링 함수
 const filterData = (data) => {
   const filterName = document.querySelector("#filter-name").value;
   const filterEnName = document.querySelector("#filter-en-name").value;
@@ -93,9 +105,9 @@ const filterData = (data) => {
   );
 };
 
-// 필터링 초기화
-const ClearBtn = document.querySelector("#clear-button");
-ClearBtn.onclick = () => {
+// 데이터 필터링 초기화
+const clearBtn = document.querySelector("#clear-button");
+clearBtn.onclick = () => {
   document.querySelector("#filter-name").value = "";
   document.querySelector("#filter-en-name").value = "";
   document.querySelector("#filter-github").value = "";
@@ -103,4 +115,43 @@ ClearBtn.onclick = () => {
   document.querySelector("#filter-role").value = "";
   document.querySelector("#filter-first-group").value = "";
   document.querySelector("#filter-second-group").value = "";
+};
+
+// 전체 체크박스 on/off
+const allBtn = document.querySelector(".all-button");
+const checkboxes = document.querySelectorAll(".checkbox");
+allBtn.onclick = () => {
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = allBtn.checked;
+  });
+};
+// 전체 체크박스의 선택 여부를 판단하는 함수
+const checkSelectAll = (checkbox) => {
+  if (checkbox.checked === false) {
+    allBtn.checked = false;
+  } else {
+    let checkAllYN = false;
+    checkboxes.forEach((checkbox) => {
+      checkAllYN = checkbox.checked ? true : false;
+    });
+    allBtn.checked = checkAllYN ? true : false;
+  }
+};
+
+// 데이터 삭제
+const deleteBtn = document.querySelector("#delete-button");
+deleteBtn.onclick = () => {
+  const deleteMembers = getMembers().filter(deleteData);
+  setMembers(deleteMembers);
+};
+// 데이터 선택 여부를 판단하는 함수
+const deleteData = (data) => {
+  let uncheckedID = [];
+  checkboxes.forEach((checkbox) => {
+    uncheckedID = checkbox.checked
+      ? uncheckedID
+      : [...uncheckedID, Number(checkbox.parentElement.parentElement.id)];
+  });
+
+  return uncheckedID.includes(data.id);
 };

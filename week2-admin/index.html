@@ -72,13 +72,13 @@
       </section>
       <section class="data-container">
         <div class="button-wrapper data-button">
-          <button>선택 삭제</button>
+          <button id="delete-button">선택 삭제</button>
           <button>추가</button>
         </div>
         <table>
           <thead>
             <tr>
-              <th><input type="checkbox" /></th>
+              <th><input class="all-button" type="checkbox" /></th>
               <th>이름</th>
               <th>영문이름</th>
               <th>GitHub</th>
@@ -92,7 +92,7 @@
           <!-- tr 템플릿 생성 -->
           <template id="row-template">
             <tr>
-              <td><input type="checkbox" /></td>
+              <td><input class="checkbox" type="checkbox" /></td>
               <td class="name"></td>
               <td class="english-name"></td>
               <td><a class="github"></a></td>
