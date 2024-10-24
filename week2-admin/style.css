@@ -249,7 +249,7 @@ dialog {
   }
 }
 
-.confirm-button {
+#confirm-button {
   width: 80rem;
   height: 4rem;
   background: #041a43;

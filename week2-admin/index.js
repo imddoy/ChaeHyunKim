@@ -143,6 +143,7 @@ const checkSelectAll = (checkbox) => {
 const deleteBtn = document.querySelector("#delete-button");
 deleteBtn.onclick = () => {
   const deleteMembers = getMembers().filter(deleteData);
+  alert("삭제되었습니다.");
   setMembers(deleteMembers);
 };
 // 데이터 선택 여부를 판단하는 함수
@@ -166,3 +167,28 @@ document.querySelector("#add-button").onclick = () => {
 modal.addEventListener("click", (e) => {
   if (e.target.nodeName === "DIALOG") modal.close();
 });
+
+/* 데이터 추가 */
+const addBtn = document.querySelector("#confirm-button");
+addBtn.onclick = () => {
+  const newMember = {
+    id: getMembers().length + 1,
+    name: document.querySelector("#add-name").value,
+    englishName: document.querySelector("#add-en-name").value,
+    github: document.querySelector("#add-github").value,
+    gender: document.querySelector("#add-gender").value,
+    role: document.querySelector("#add-role").value,
+    firstWeekGroup: Number(document.querySelector("#add-first-group").value),
+    secondWeekGroup: Number(document.querySelector("#add-second-group").value),
+  };
+
+  if (isEmpty(newMember)) {
+    alert("모든 값을 작성해주세요.");
+  } else {
+    setMembers([...getMembers(), newMember]);
+    alert("추가되었습니다.");
+  }
+};
+// null값 확인
+const isEmpty = (object) =>
+  !Object.values(object).every((input) => input !== null && input !== "");
