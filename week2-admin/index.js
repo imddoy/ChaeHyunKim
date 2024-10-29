@@ -120,14 +120,15 @@ clearBtn.onclick = () => {
 /* 체크박스 구현 */
 // 전체 체크박스 on/off
 const allBtn = document.querySelector(".all-button");
-const checkboxes = document.querySelectorAll(".checkbox");
 allBtn.onclick = () => {
+  const checkboxes = document.querySelectorAll(".checkbox");
   checkboxes.forEach((checkbox) => {
     checkbox.checked = allBtn.checked;
   });
 };
 // 전체 체크박스의 선택 여부를 판단하는 함수
 const checkSelectAll = (checkbox) => {
+  const checkboxes = document.querySelectorAll(".checkbox");
   if (checkbox.checked === false) {
     allBtn.checked = false;
   } else {
@@ -148,6 +149,7 @@ deleteBtn.onclick = () => {
 };
 // 데이터 선택 여부를 판단하는 함수
 const deleteData = (data) => {
+  const checkboxes = document.querySelectorAll(".checkbox");
   let uncheckedID = [];
   checkboxes.forEach((checkbox) => {
     uncheckedID = checkbox.checked
