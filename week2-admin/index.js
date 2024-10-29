@@ -146,6 +146,7 @@ deleteBtn.onclick = () => {
   const deleteMembers = getMembers().filter(deleteData);
   alert("삭제되었습니다.");
   setMembers(deleteMembers);
+  window.location.reload();
 };
 // 데이터 선택 여부를 판단하는 함수
 const deleteData = (data) => {
