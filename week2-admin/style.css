@@ -1,0 +1,261 @@
+/* 헤더 */
+header {
+  position: sticky;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  background-color: black;
+  font-size: 2rem;
+  color: #fff;
+
+  & div:first-child {
+    text-align: left;
+  }
+
+  & div:nth-child(2) {
+    text-align: center;
+  }
+
+  & div:last-child {
+    text-align: right;
+  }
+}
+
+/* 레이아웃 */
+main {
+  width: 80vw;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  width: inherit;
+  height: max-content;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #829fd4;
+  border-radius: 8px;
+}
+
+.filter-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas:
+    "name name name name name name"
+    "en-name en-name en-name en-name en-name en-name"
+    "github github gender gender role role"
+    "first-group first-group first-group second-group second-group second-group";
+  gap: 1.2rem;
+
+  width: 100%;
+}
+
+/* 각 input의 영역 */
+.name {
+  grid-area: name;
+}
+.en-name {
+  grid-area: en-name;
+}
+.github {
+  grid-area: github;
+}
+.gender {
+  grid-area: gender;
+}
+.role {
+  grid-area: role;
+}
+.first-group {
+  grid-area: first-group;
+}
+.second-group {
+  grid-area: second-group;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  height: 5rem;
+
+  & label {
+    align-content: center;
+    flex-shrink: 0; /* 공간이 줄어들어도 너비가 작아지지 않도록 고정 */
+    width: 12rem;
+    height: inherit;
+
+    font-size: 1.6rem;
+    font-weight: 800;
+    background-color: #a7b6d1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  & input,
+  select {
+    flex-grow: 1; /* 크기를 꽉 채울 수 있도록 설정 */
+    min-width: 0; /* grid 안에서 셀 크기에 맞춰 최소한의 너비로 줄어들 수 있도록 설정 */
+    height: inherit;
+    padding: 0 0.8rem;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    outline: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* select placeholder 설정 */
+select {
+  color: gray; /* 기본적으로 회색 글씨 */
+
+  & option {
+    color: black; /* option은 검정 글씨 */
+  }
+
+  &:valid {
+    /* 유효한 값을 갖고 있다면 */
+    color: black;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  button {
+    width: 40%;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &:first-child {
+      background-color: #3b4e71;
+    }
+    &:last-child {
+      background-color: #041a43;
+    }
+  }
+}
+
+/* 데이터 테이블 */
+.data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 2rem;
+}
+
+.data-button {
+  justify-content: end;
+  width: 24rem;
+}
+
+table {
+  width: 100%;
+
+  background-color: white;
+
+  & * {
+    align-content: center;
+    height: 3rem;
+
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+
+    border: 1px solid #041a43;
+  }
+
+  & a {
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+
+  & th {
+    color: white;
+    background-color: #3b4e71;
+  }
+}
+
+/* 모달 */
+dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 0;
+  border-radius: 10px;
+  background-color: #829fd4;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  width: 80rem;
+  padding: 2rem;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 2.4rem;
+  font-weight: 800;
+
+  & button {
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+}
+
+#confirm-button {
+  width: 80rem;
+  height: 4rem;
+  background: #041a43;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
