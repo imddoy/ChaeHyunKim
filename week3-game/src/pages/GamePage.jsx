@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import * as S from "./GamePage.style";
 import { shuffle } from "./../utils/shuffle";
 
-const GamePage = ({ level, time }) => {
+const GamePage = ({ level, startTimer, stopTimer }) => {
   const [nextNum, setNextNum] = useState(1);
   const gridSize = level + 2;
   const halfNum = gridSize * gridSize;
@@ -17,9 +17,16 @@ const GamePage = ({ level, time }) => {
   // 클릭 이벤트 핸들러
   const handleNumClick = (num) => {
     console.log(num);
-
+    // 1을 클릭했을 때 타이머 시작
+    if (num === 1) {
+      startTimer();
+    }
     if (nextNum === num) {
       setNextNum((prev) => prev + 1);
+    }
+    // 마지막 숫자 클릭했을 때 타이머 종료
+    if (num === halfNum) {
+      stopTimer();
     }
   };
 

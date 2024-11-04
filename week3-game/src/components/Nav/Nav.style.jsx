@@ -50,6 +50,8 @@ export const SelectLevel = styled.select`
 `;
 
 export const Timer = styled.span`
+  width: 3rem;
+
   ${({ theme }) => theme.fonts["body1-normal-medi"]};
   color: ${({ theme }) => theme.colors.buttonText};
 `;
