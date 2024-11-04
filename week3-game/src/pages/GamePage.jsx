@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import * as S from "./GamePage.style";
 import { shuffle } from "./../utils/shuffle";
 
@@ -12,12 +12,16 @@ const GamePage = React.memo(({ level, startTimer, stopTimer }) => {
   const halfNum = gridSize * gridSize; // 3*3 4*4 5*5
   const maxNum = halfNum * 2;
 
-  // 게임판 숫자 생성 (value 값, 새로 들어온 값의 여부로 구성된 객체 배열)
-  const [numbers, setNumbers] = useState(
-    // 절반까지 섞기
-    shuffle(Array.from({ length: halfNum }, (_, i) => ({ value: i + 1, isNew: false })))
-  );
-  console.log(numbers);
+  // 게임판 숫자 (value 값, 새로 들어온 값의 여부로 구성된 객체 배열)
+  const [numbers, setNumbers] = useState([]);
+
+  // level이 변경될 때마다 다음 숫자, 게임판 숫자 초기화
+  useEffect(() => {
+    setNextNum(1);
+    setNumbers(
+      shuffle(Array.from({ length: halfNum }, (_, i) => ({ value: i + 1, isNew: false })))
+    );
+  }, [level]);
 
   // 2회차 숫자 생성
   const remainingNumbers = useMemo(
