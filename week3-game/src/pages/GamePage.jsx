@@ -27,7 +27,7 @@ const GamePage = React.memo(({ level, startTimer, stopTimer, toggleResetGame }) 
   const remainingNumbers = useMemo(
     () =>
       shuffle(Array.from({ length: halfNum }, (_, i) => ({ value: halfNum + i + 1, isNew: true }))), // halfNum + 1부터 maxNum까지
-    [level]
+    [level, toggleResetGame]
   );
 
   // 클릭 이벤트 핸들러

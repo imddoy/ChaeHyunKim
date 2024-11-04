@@ -53,7 +53,6 @@ function App() {
     setIsOpen(false);
     saveGameResult(level, parseFloat(time)); // 게임 저장
     setTime("0.00"); // 시간 초기화
-    setLevel(1);
     setToggleResetGame((prev) => !prev); // 게임 리렌더링
   };
 
