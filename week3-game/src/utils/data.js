@@ -27,3 +27,7 @@ export const saveGameResult = (level, playTime) => {
 export const getGameResults = () => {
   return JSON.parse(localStorage.getItem("gameResults") || "[]");
 };
+
+export const resetGameResults = () => {
+  localStorage.setItem("gameResults", JSON.stringify([]));
+};
