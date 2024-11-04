@@ -17,11 +17,11 @@ export const NumBox = styled.div`
   width: 5rem;
   height: 5rem;
 
+  ${({ theme }) => theme.fonts["body1-normal-medi"]};
   background-color: ${({ theme, $isNew }) =>
     $isNew ? theme.colors.primary2 : theme.colors.primary1};
   color: ${({ theme }) => theme.colors.bgInvert};
-  font-size: 1.6rem;
-  font-weight: bold;
+
   border-radius: 4px;
   cursor: pointer;
   ${({ $isEmpty }) => ($isEmpty ? "visibility: hidden;" : "visibility: visible;")};

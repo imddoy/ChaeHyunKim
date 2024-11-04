@@ -23,3 +23,7 @@ export const saveGameResult = (level, playTime) => {
   localStorage.setItem("gameResults", JSON.stringify(results));
   console.log(results);
 };
+
+export const getGameResults = () => {
+  return JSON.parse(localStorage.getItem("gameResults") || "[]");
+};
