@@ -7,6 +7,7 @@ import RankingPage from "@pages/RankingPage";
 import { useState, useRef, useCallback } from "react";
 import MainPage from "./pages/MainPage";
 import Modal from "@components/modal/Modal";
+import { saveGameResult } from "@utils/data";
 
 function App() {
   const [page, setPage] = useState("game");
@@ -47,10 +48,12 @@ function App() {
     setIsOpen(true);
   }, []);
 
-  // 게임 리셋
+  // 게임 저장 후 리셋
   const handleModalClose = () => {
     setIsOpen(false);
+    saveGameResult(level, parseFloat(time)); // 게임 저장
     setTime("0.00"); // 시간 초기화
+    setLevel(1);
     setToggleResetGame((prev) => !prev); // 게임 리렌더링
   };
 

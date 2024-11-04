@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import * as S from "./GamePage.style";
-import { shuffle } from "./../utils/shuffle";
+import { shuffle } from "@utils/shuffle";
 
 // 타이머가 돌아가도 렌더링되지 않도록 memo 사용
 const GamePage = React.memo(({ level, startTimer, stopTimer, toggleResetGame }) => {
