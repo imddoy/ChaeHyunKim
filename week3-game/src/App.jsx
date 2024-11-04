@@ -1,17 +1,20 @@
 import { ThemeProvider } from "styled-components";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/global";
-import Nav from "@components/Nav/Nav";
+import Nav from "@components/nav/Nav";
 import GamePage from "@pages/GamePage";
 import RankingPage from "@pages/RankingPage";
 import { useState, useRef, useCallback } from "react";
 import MainPage from "./pages/MainPage";
+import Modal from "@components/modal/Modal";
 
 function App() {
   const [page, setPage] = useState("game");
   const [level, setLevel] = useState(1);
   const [time, setTime] = useState("0.00");
   const timerWorker = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [toggleResetGame, setToggleResetGame] = useState(false);
 
   // 페이지 변경
   const handlePageChange = (newPage) => {
@@ -41,7 +44,15 @@ function App() {
       timerWorker.current.terminate();
       timerWorker.current = null;
     }
+    setIsOpen(true);
   }, []);
+
+  // 게임 리셋
+  const handleModalClose = () => {
+    setIsOpen(false);
+    setTime("0.00"); // 시간 초기화
+    setToggleResetGame((prev) => !prev); // 게임 리렌더링
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -55,11 +66,17 @@ function App() {
       <GlobalStyle />
       <MainPage>
         {page === "game" ? (
-          <GamePage level={level} startTimer={startTimer} stopTimer={stopTimer} />
+          <GamePage
+            level={level}
+            startTimer={startTimer}
+            stopTimer={stopTimer}
+            toggleResetGame={toggleResetGame}
+          />
         ) : (
           <RankingPage />
         )}
       </MainPage>
+      {isOpen && <Modal open={isOpen} time={time} onClose={handleModalClose} />}
     </ThemeProvider>
   );
 }

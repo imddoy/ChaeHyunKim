@@ -3,7 +3,7 @@ import * as S from "./GamePage.style";
 import { shuffle } from "./../utils/shuffle";
 
 // 타이머가 돌아가도 렌더링되지 않도록 memo 사용
-const GamePage = React.memo(({ level, startTimer, stopTimer }) => {
+const GamePage = React.memo(({ level, startTimer, stopTimer, toggleResetGame }) => {
   // 다음 숫자
   const [nextNum, setNextNum] = useState(1);
 
@@ -21,7 +21,7 @@ const GamePage = React.memo(({ level, startTimer, stopTimer }) => {
     setNumbers(
       shuffle(Array.from({ length: halfNum }, (_, i) => ({ value: i + 1, isNew: false })))
     );
-  }, [level]);
+  }, [level, toggleResetGame]);
 
   // 2회차 숫자 생성
   const remainingNumbers = useMemo(
