@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/global";
-import Nav from "@components/nav/Nav";
+import Nav from "@components/Nav/Nav";
 import GamePage from "@pages/GamePage";
 import RankingPage from "@pages/RankingPage";
 import { useState, useRef, useCallback } from "react";
