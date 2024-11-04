@@ -21,7 +21,6 @@ const global = createGlobalStyle`
     }
 
 
-
     ul, li {
     padding-left: 0;
 
