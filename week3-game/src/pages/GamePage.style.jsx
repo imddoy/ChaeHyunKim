@@ -17,14 +17,17 @@ export const NumBox = styled.div`
   width: 5rem;
   height: 5rem;
 
-  background-color: ${({ theme }) => theme.colors.primary1};
+  background-color: ${({ theme, $isNew }) =>
+    $isNew ? theme.colors.primary2 : theme.colors.primary1};
   color: ${({ theme }) => theme.colors.bgInvert};
   font-size: 1.6rem;
   font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
+  ${({ $isEmpty }) => ($isEmpty ? "visibility: hidden;" : "visibility: visible;")};
 
   &:active {
-    filter: brightness(80%);
+    opacity: 0.4;
+    filter: brightness(70%);
   }
 `;

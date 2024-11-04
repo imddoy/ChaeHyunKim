@@ -4,7 +4,7 @@ import GlobalStyle from "@styles/global";
 import Nav from "@components/Nav/Nav";
 import GamePage from "@pages/GamePage";
 import RankingPage from "@pages/RankingPage";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import MainPage from "./pages/MainPage";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   };
 
   // 타이머 시작 함수
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     if (!timerWorker.current) {
       timerWorker.current = new Worker(new URL("./utils/worker.js", import.meta.url));
       timerWorker.current.postMessage("start");
@@ -32,16 +32,16 @@ function App() {
         setTime((e.data / 1000).toFixed(2));
       };
     }
-  };
+  }, []);
 
   // 타이머 정지 함수
-  const stopTimer = () => {
+  const stopTimer = useCallback(() => {
     if (timerWorker.current) {
       timerWorker.current.postMessage("stop");
       timerWorker.current.terminate();
       timerWorker.current = null;
     }
-  };
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
