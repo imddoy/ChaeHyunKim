@@ -21,7 +21,7 @@ export const Input = styled.input<{ $isDisabled?: boolean }>`
   height: inherit;
   padding: 0 1.6rem;
 
-  color: ${({ theme, $isDisabled }) => ($isDisabled ? theme.colors.red : theme.colors.gray_0)};
+  color: ${({ theme }) => theme.colors.gray_0};
 
   background: ${({ theme }) => theme.colors.gray_800};
   border: 1px solid ${({ theme, $isDisabled }) => ($isDisabled ? theme.colors.red : "transparent")};
@@ -48,7 +48,7 @@ export const ToggleVisibilityIcon = styled.section`
   cursor: pointer;
 `;
 
-export const InputMessage = styled.p`
+export const InputMessage = styled.div`
   height: 2rem;
   color: ${({ theme }) => theme.colors.red};
   ${({ theme }) => theme.fonts["body2-normal-medi"]};

@@ -1,10 +1,11 @@
 import SignUpForm from "@components/signup/SignUpForm";
 import * as S from "./Signup.style";
 import Input from "@components/common/input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@components/common/button/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { validateInput } from "@utils/handleInput";
 
 const Signup = () => {
   const [step, setStep] = useState(1); // 1~3
@@ -13,25 +14,31 @@ const Signup = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [hobby, setHobby] = useState("");
   const [buttonText, setButtonText] = useState("다음");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const navigate = useNavigate();
 
-  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>, field: string) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setter(e.target.value);
+      setErrors((prevErrors) => ({ ...prevErrors, [field]: "" }));
+      setTouched((prevTouched) => ({ ...prevTouched, [field]: true }));
+    };
+
+  const handleValidation = () => {
+    const fields = step === 1 ? { username } : step === 2 ? { password, checkPassword } : { hobby };
+    const { isValid, errors: validationErrors } = validateInput(step, fields, touched);
+    setErrors(validationErrors);
+    return isValid;
   };
 
-  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleCheckPasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckPassword(e.target.value);
-  };
-
-  const handleHobbyInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHobby(e.target.value);
-  };
+  useEffect(() => {
+    handleValidation();
+  }, [step, username, password, checkPassword, hobby]);
 
   const nextStep = () => {
+    if (!handleValidation()) return;
     if (step === 2) {
       setButtonText("제출");
     }
@@ -39,6 +46,7 @@ const Signup = () => {
   };
 
   const submitSignup = async () => {
+    if (!handleValidation()) return;
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user`, {
         username: username,
@@ -74,9 +82,11 @@ const Signup = () => {
             value={username}
             type="text"
             placeholder="이름을 입력하세요"
-            onChange={handleNameInput}
+            onChange={handleChange(setUsername, "username")}
+            message={errors.username}
+            isDisabled={!!errors.username}
           />
-          <Button text={buttonText} onClick={nextStep} />
+          <Button text={buttonText} onClick={nextStep} disabled={!username || !!errors.username} />
         </SignUpForm>
       )}
       {step === 2 && (
@@ -85,15 +95,23 @@ const Signup = () => {
             value={password}
             type="password"
             placeholder="비밀번호를 입력하세요"
-            onChange={handlePasswordInput}
+            onChange={handleChange(setPassword, "password")}
+            message={errors.password}
+            isDisabled={!!errors.password}
           />
           <Input
             value={checkPassword}
             type="password"
-            placeholder="비밀번호를 입력하세요"
-            onChange={handleCheckPasswordInput}
+            placeholder="비밀번호 확인을 입력하세요"
+            onChange={handleChange(setCheckPassword, "checkPassword")}
+            message={errors.checkPassword}
+            isDisabled={!!errors.password}
           />
-          <Button text={buttonText} onClick={nextStep} />
+          <Button
+            text={buttonText}
+            onClick={nextStep}
+            disabled={!password || !checkPassword || !!errors.password || !!errors.checkPassword}
+          />
         </SignUpForm>
       )}
       {step === 3 && (
@@ -102,9 +120,11 @@ const Signup = () => {
             value={hobby}
             type="text"
             placeholder="취미를 입력하세요"
-            onChange={handleHobbyInput}
+            onChange={handleChange(setHobby, "hobby")}
+            message={errors.hobby}
+            isDisabled={!!errors.hobby}
           />
-          <Button text={buttonText} onClick={submitSignup} />
+          <Button text={buttonText} onClick={submitSignup} disabled={!hobby || !!errors.hobby} />
         </SignUpForm>
       )}
     </S.SignupWrapper>

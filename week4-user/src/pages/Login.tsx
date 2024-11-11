@@ -8,7 +8,6 @@ import axios from "axios";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,19 +51,12 @@ const Login = () => {
 
   return (
     <S.LoginWrapper>
-      <Input
-        value={id}
-        type="text"
-        placeholder="아이디"
-        onChange={handleIdInput}
-        message={errorMessage}
-      />
+      <Input value={id} type="text" placeholder="아이디" onChange={handleIdInput} />
       <Input
         value={password}
         type="password"
         placeholder="비밀번호"
         onChange={handlePasswordInput}
-        message={errorMessage}
       />
       <Button text="로그인" onClick={submitLogin} />
       <S.SignupBtn onClick={goSignup}>회원가입</S.SignupBtn>
