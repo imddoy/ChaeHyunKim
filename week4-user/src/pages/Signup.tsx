@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Button from "@components/common/button/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { validateInput } from "@utils/handleInput";
+import { validateSignupInput } from "@utils/handleInput";
 
 const Signup = () => {
   const [step, setStep] = useState(1); // 1~3
@@ -28,7 +28,7 @@ const Signup = () => {
 
   const handleValidation = () => {
     const fields = step === 1 ? { username } : step === 2 ? { password, checkPassword } : { hobby };
-    const { isValid, errors: validationErrors } = validateInput(step, fields, touched);
+    const { isValid, errors: validationErrors } = validateSignupInput(step, fields, touched);
     setErrors(validationErrors);
     return isValid;
   };
