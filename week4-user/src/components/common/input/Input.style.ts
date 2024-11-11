@@ -10,6 +10,7 @@ export const InputContainer = styled.section`
 
 export const InputWrapper = styled.article`
   position: relative;
+  ${Generators.flexGenerator("row", "center", "center")}
 
   width: inherit;
   height: 5rem;
@@ -24,7 +25,7 @@ export const Input = styled.input<{ $isDisabled?: boolean }>`
 
   background: ${({ theme }) => theme.colors.gray_800};
   border: 1px solid ${({ theme, $isDisabled }) => ($isDisabled ? theme.colors.red : "transparent")};
-  border-radius: 0.6rem;
+  border-radius: 6px;
 
   ${({ theme }) => theme.fonts["body2-normal-medi"]};
 
