@@ -10,6 +10,12 @@ const MyPageHeader = () => {
     setTab(tab);
     navigate(`/mypage/${tab}`);
   };
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <S.MyPageHeaderContainer>
       <S.NavTab>
@@ -23,7 +29,7 @@ const MyPageHeader = () => {
           </S.TabBtn>
         </S.TabBtnWrapper>
       </S.NavTab>
-      <S.LogoutBtn>로그아웃</S.LogoutBtn>
+      <S.LogoutBtn onClick={logout}>로그아웃</S.LogoutBtn>
     </S.MyPageHeaderContainer>
   );
 };
