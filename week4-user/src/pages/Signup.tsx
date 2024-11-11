@@ -4,6 +4,7 @@ import Input from "@components/common/input/Input";
 import { useState } from "react";
 import Button from "@components/common/button/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [step, setStep] = useState(1); // 1~3
@@ -12,6 +13,7 @@ const Signup = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [hobby, setHobby] = useState("");
   const [buttonText, setButtonText] = useState("다음");
+  const navigate = useNavigate();
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -38,14 +40,29 @@ const Signup = () => {
 
   const submitSignup = async () => {
     try {
-      const request = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user`, {
         username: username,
         password: password,
         hobby: hobby,
       });
-      console.log(request);
+
+      const { no } = response.data.result;
+      alert(`${no}번째 회원님, 환영합니다!`);
+      navigate("/login");
     } catch (error) {
-      console.error(error);
+      const { status, data } = error.response;
+      const errorMessage =
+        status === 400 && data.code === "00"
+          ? "유효하지 않은 요청입니다."
+          : status === 400 && data.code === "01"
+          ? "유효하지 않은 회원 정보입니다."
+          : status === 404
+          ? "유효하지 않은 경로입니다."
+          : status === 409 && data.code === "00"
+          ? "이미 존재하는 이름입니다."
+          : "알 수 없는 오류가 발생했습니다.";
+
+      alert(errorMessage);
     }
   };
 
