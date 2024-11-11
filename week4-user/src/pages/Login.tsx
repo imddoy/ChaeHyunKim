@@ -8,6 +8,7 @@ import axios from "axios";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,24 +25,46 @@ const Login = () => {
 
   const submitLogin = async () => {
     try {
-      const request = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`, {
         username: id,
         password: password,
       });
-      console.log(request);
+
+      const { token } = response.data.result;
+      localStorage.setItem("user", token);
+      navigate("/mypage");
     } catch (error) {
-      console.error(error);
+      const { status, data } = error.response;
+      const errorMessage =
+        status === 400 && data.code === "01"
+          ? "유효하지 않은 요청입니다."
+          : status === 400 && data.code === "02"
+          ? "올바르지 않은 로그인 정보입니다."
+          : status === 403 && data.code === "01"
+          ? "비밀번호가 틀렸습니다."
+          : status === 404 && data.code === "00"
+          ? "유효하지 않은 경로입니다."
+          : "알 수 없는 오류가 발생했습니다.";
+
+      alert(errorMessage);
     }
   };
 
   return (
     <S.LoginWrapper>
-      <Input value={id} type="text" placeholder="아이디" onChange={handleIdInput} />
+      <Input
+        value={id}
+        type="text"
+        placeholder="아이디"
+        onChange={handleIdInput}
+        message={errorMessage}
+      />
       <Input
         value={password}
         type="password"
         placeholder="비밀번호"
         onChange={handlePasswordInput}
+        message={errorMessage}
       />
       <Button text="로그인" onClick={submitLogin} />
       <S.SignupBtn onClick={goSignup}>회원가입</S.SignupBtn>
