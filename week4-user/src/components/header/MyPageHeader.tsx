@@ -1,19 +1,19 @@
 import { useState } from "react";
 import * as S from "./MyPageHeader.style";
-import { useNavigate } from "react-router-dom";
+import useNavigation from "./../../hooks/useNavigation";
 
 const MyPageHeader = () => {
   const [tab, setTab] = useState("hobby");
-  const navigate = useNavigate();
+  const { goToMyPageTab, goToLogin } = useNavigation();
 
   const handleTab = (tab) => {
     setTab(tab);
-    navigate(`/mypage/${tab}`);
+    goToMyPageTab(tab);
   };
 
   const logout = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    goToLogin();
   };
 
   return (

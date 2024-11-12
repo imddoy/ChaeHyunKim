@@ -2,13 +2,13 @@ import Button from "@components/common/button/Button";
 import Input from "@components/common/input/Input";
 import { useState } from "react";
 import * as S from "./Login.style";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useNavigation from "./../hooks/useNavigation";
+import { login } from "@apis/userApi";
 
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { goToMyPageTab, goToSignUp } = useNavigation();
 
   const handleIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -18,20 +18,11 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const goSignup = () => {
-    navigate("/signup");
-  };
-
   const submitLogin = async () => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`, {
-        username: id,
-        password: password,
-      });
-
-      const { token } = response.data.result;
+      const { token } = await login(id, password);
       localStorage.setItem("user", token);
-      navigate("/mypage");
+      goToMyPageTab("hobby");
     } catch (error) {
       const { status, data } = error.response;
       const errorMessage =
@@ -59,7 +50,7 @@ const Login = () => {
         onChange={handlePasswordInput}
       />
       <Button text="로그인" onClick={submitLogin} />
-      <S.SignupBtn onClick={goSignup}>회원가입</S.SignupBtn>
+      <S.SignupBtn onClick={goToSignUp}>회원가입</S.SignupBtn>
     </S.LoginWrapper>
   );
 };

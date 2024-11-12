@@ -2,11 +2,11 @@ import Input from "@components/common/input/Input";
 import * as S from "./Hobby.style";
 import Button from "@components/common/button/Button";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Spacing from "@components/common/spacing/Spacing";
 import { validateUpdateInput } from "@utils/handleInput";
+import { updateUserInfo } from "@apis/userApi";
 
-const Hobby = () => {
+const MyInfo = () => {
   const [hobby, setHobby] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -36,16 +36,7 @@ const Hobby = () => {
     }
 
     try {
-      await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/user`,
-        { hobby, password },
-        {
-          headers: {
-            token: token,
-          },
-        }
-      );
-
+      await updateUserInfo(hobby, password);
       alert("변경되었습니다.");
       if (hobby) {
         setHobby("");
@@ -99,4 +90,4 @@ const Hobby = () => {
   );
 };
 
-export default Hobby;
+export default MyInfo;

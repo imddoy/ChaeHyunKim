@@ -3,9 +3,9 @@ import * as S from "./Signup.style";
 import Input from "@components/common/input/Input";
 import { useEffect, useState } from "react";
 import Button from "@components/common/button/Button";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { validateSignupInput } from "@utils/handleInput";
+import useNavigation from "./../hooks/useNavigation";
+import { signUp } from "@apis/userApi";
 
 const Signup = () => {
   const [step, setStep] = useState(1); // 1~3
@@ -16,7 +16,7 @@ const Signup = () => {
   const [buttonText, setButtonText] = useState("다음");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
-  const navigate = useNavigate();
+  const { goToLogin } = useNavigation();
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>, field: string) =>
@@ -48,15 +48,9 @@ const Signup = () => {
   const submitSignup = async () => {
     if (!handleValidation()) return;
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user`, {
-        username: username,
-        password: password,
-        hobby: hobby,
-      });
-
-      const { no } = response.data.result;
+      const no = await signUp(username, password, hobby);
       alert(`${no}번째 회원님, 환영합니다!`);
-      navigate("/login");
+      goToLogin();
     } catch (error) {
       const { status, data } = error.response;
       const errorMessage =

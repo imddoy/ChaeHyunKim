@@ -2,8 +2,8 @@ import Input from "@components/common/input/Input";
 import * as S from "./Hobby.style";
 import Button from "@components/common/button/Button";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Spacing from "@components/common/spacing/Spacing";
+import { getUserHobby, searchHobbyById } from "@apis/userApi";
 
 const Hobby = () => {
   const [no, setNo] = useState(null);
@@ -15,22 +15,10 @@ const Hobby = () => {
     setSearchedHobby(null);
   };
 
-  const token = localStorage.getItem("user");
-
-  const getUserHobby = async () => {
-    if (!token) {
-      alert("토큰이 없습니다. 다시 로그인하세요.");
-      return;
-    }
-
+  const fetchUserHobby = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/my-hobby`, {
-        headers: {
-          token: `${token}`,
-        },
-      });
-
-      setUserHobby(response.data.result.hobby);
+      const hobby = await getUserHobby();
+      setUserHobby(hobby);
     } catch (error) {
       if (error.response) {
         const { status, data } = error.response;
@@ -50,17 +38,13 @@ const Hobby = () => {
   };
 
   useEffect(() => {
-    getUserHobby();
+    fetchUserHobby();
   }, []);
 
   const searchHobby = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${no}/hobby`, {
-        headers: {
-          token: `${token}`,
-        },
-      });
-      setSearchedHobby(response.data.result.hobby);
+      const hobby = await searchHobbyById(no);
+      setSearchedHobby(hobby);
     } catch (error) {
       const { status, data } = error.response;
       const errorMessage =
