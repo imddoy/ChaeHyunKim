@@ -1,9 +1,12 @@
 import { useState } from "react";
 import * as S from "./MyPageHeader.style";
 import useNavigation from "./../../hooks/useNavigation";
+import { useLocation } from "react-router-dom";
 
 const MyPageHeader = () => {
-  const [tab, setTab] = useState("hobby");
+  const location = useLocation();
+  const initialTab = location.pathname.endsWith("/info") ? "info" : "hobby";
+  const [tab, setTab] = useState(initialTab);
   const { goToMyPageTab, goToLogin } = useNavigation();
 
   const handleTab = (tab) => {
